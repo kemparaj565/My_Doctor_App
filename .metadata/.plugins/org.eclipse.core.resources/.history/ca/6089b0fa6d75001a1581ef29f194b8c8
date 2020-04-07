@@ -1,0 +1,2 @@
+create table symptom(ID integer,Symptom_Name varchar(2000),Symptom_Description varchar(4000),
+Duration_Of_Symptom integer);

@@ -1,0 +1,18 @@
+package com.shiva.csv;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+    		parseCsv("//Users//shiva//Symptoms-Updated.csv");
+    }
+
+	private static void parseCsv(String string) {
+
+		
+	}
+}

@@ -1,0 +1,13 @@
+package com.mydoctorapp.data.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Component;
+
+import com.mydoctorapp.data.bean.Disease;
+
+@Component
+public interface DiseaseRepository extends JpaRepository<Disease,Integer>{
+	
+	Disease findByDiseaseName();
+
+}

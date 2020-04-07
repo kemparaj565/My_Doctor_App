@@ -1,0 +1,55 @@
+package com.mydoctorapp.data.bean;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import lombok.NoArgsConstructor;
+
+
+@NoArgsConstructor
+@Entity
+public class Symptom {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
+	private String symptomName;
+	private String symptomDescription;
+	private Long durationOfSympton;
+	
+	public String getSymptomName() {
+		return symptomName;
+	}
+	public void setSymptomName(String symptomName) {
+		this.symptomName = symptomName;
+	}
+	public String getSymptomDescription() {
+		return symptomDescription;
+	}
+	public void setSymptomDescription(String symptomDescription) {
+		this.symptomDescription = symptomDescription;
+	}
+	public Long getDurationOfSympton() {
+		return durationOfSympton;
+	}
+	public void setDurationOfSympton(Long durationOfSympton) {
+		this.durationOfSympton = durationOfSympton;
+	}
+	public int getId() {
+		return id;
+	}
+	
+	public Symptom(String symptomName, String symptomDescription, Long durationOfSympton) {
+		super();
+		this.symptomName = symptomName;
+		this.symptomDescription = symptomDescription;
+		this.durationOfSympton = durationOfSympton;
+	}
+	
+	
+	
+
+}

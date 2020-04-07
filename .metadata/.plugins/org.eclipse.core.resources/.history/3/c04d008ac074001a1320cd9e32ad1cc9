@@ -1,0 +1,24 @@
+package com.mydoctorapp.data.bean;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@Entity(name="disease")
+//@Table(name="disease")
+public class Disease {
+	
+	@Id
+	private Long sl_no;
+	private String diseaseName;
+	private String[] symptom;
+	private String diseaseDescription;
+	private Long durationOfDisease;
+	
+
+}

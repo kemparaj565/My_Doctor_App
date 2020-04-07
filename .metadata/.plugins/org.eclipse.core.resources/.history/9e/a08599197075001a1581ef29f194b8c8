@@ -1,0 +1,6 @@
+create table disease(Disease_ID integer,disease_name varchar(1000),symptom varchar(2000),
+disease_Description varchar(3000),duration_Of_Disease integer);
+
+
+create table symptom(Symptom_ID integer,symptom_name varchar(2000),symptom_description varchar(4000),
+duration_of_symptom integer);

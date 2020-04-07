@@ -1,0 +1,30 @@
+package com.mydoctorapp.data.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mydoctorapp.data.bean.Disease;
+import com.mydoctorapp.data.repository.DiseaseRepository;
+
+@RestController
+public class DiseaseRestController {
+	
+	
+	@Autowired
+	DiseaseRepository diseaseRepo;
+	
+	
+	@GetMapping("/list-diseases")
+	public List<Disease> getAllDiseases(){
+		return diseaseRepo.findAll();
+	}
+	
+	@GetMapping("/query-disease")
+	public Disease getDisease() {
+		
+	}
+
+}

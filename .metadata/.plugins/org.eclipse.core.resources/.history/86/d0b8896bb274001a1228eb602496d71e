@@ -1,0 +1,12 @@
+insert into disease values(“Chikungunya“,”High fever,multiple joint pain with fever,headaches,Muscle Pain,Joint Swelling“,”Disease Description Here“,0);
+insert into disease values(“Typhoid Fever“,”Typhoid fever,poor appetite,abdominal pain,headaches,weakness,lethargy,Body Pain“,”Disease Description Here“,0);
+insert into disease values(“Anemia“,”Pale skin (Pallor),Weakness/Fatigue,Shortness of breath,Palpitations“,”Disease Description Here“,0);
+insert into disease values(“Cervical Spondylosis“,”Neck Pain,Shoulder pain,Arm pain,Numbnessin hand“,”Disease Description Here“,0);
+insert into disease values(“Common Cold“,”Running Nose,Blocked Nose,Soarness in Throat,Fever,Wet Cough,Dry Cough,Body Pain,Headache,Malaise,Vomiting“,”Disease Description Here“,0);
+insert into disease values(“Fibromyalgia“,”Ache all over,Fatigue,Stiffness all over,Numbness (Loss of sensation),Anxiety and nervousness“,”Disease Description Here“,0);
+insert into disease values(“Gastroesophageal reflux disease (GERD)“,”Burning chest pain,Nausea,Headache,Vomiting“,”Disease Description Here“,0);
+insert into disease values(“Migraine“,”Half Headache,Nausea,Vomiting,Dizziness“,”Disease Description Here“,0);
+insert into disease values(“Osteoarthritis (Knee pain)“,”Knee pain,Knee swelling,Knee stiffness or tightness“,”Disease Description Here“,0);
+insert into disease values(“Sciatica“,”Low Back Pain,Leg pain,Muscle stiffness or tightness,Hip pain,Numbness (Loss of sensation),Difficulty in walking (Problems with movement)“,”Disease Description Here“,0);
+insert into disease values(“Urinary Tract Infection“,”Chills,high fever,burning while passing urine with fever,burning while passing urine,Vomiting,Nausea,headaches;,Muscle Pain,Fatigue“,”Disease Description Here“,0);
+insert into disease values(“Viral Fever“,”Fever,Body Pain,Weakness,Chills,Loss of Appetite,Lethargy,Nausea“,”Disease Description Here“,0);
