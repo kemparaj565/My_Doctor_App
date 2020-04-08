@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'my-doctor-body',
@@ -28,4 +28,15 @@ export class MyDoctorBodyComponent implements OnInit {
     });
   }
 
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]); 
+
+  phoneFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]); 
+
+  gender: string[] = ['Male', 'Female', 'Trans-Gender', 'Won\'t Reveal'];
 }

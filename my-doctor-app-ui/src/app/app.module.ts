@@ -17,6 +17,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCommonModule, MatRippleModule } from '@angular/material/core';
+import { MatRadioModule } from '@angular/material/radio';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +44,12 @@ import { MatInputModule } from '@angular/material/input';
     MatCheckboxModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDividerModule,
+    MatIconModule,
+    MatCommonModule,
+    MatRippleModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]
