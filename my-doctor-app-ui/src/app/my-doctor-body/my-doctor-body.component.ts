@@ -39,4 +39,6 @@ export class MyDoctorBodyComponent implements OnInit {
   ]); 
 
   gender: string[] = ['Male', 'Female', 'Trans-Gender', 'Won\'t Reveal'];
+
+  startDate = new Date(1975, 0, 1);
 }

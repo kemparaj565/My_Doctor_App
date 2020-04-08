@@ -3,19 +3,37 @@
         <mat-step [stepControl]="firstFormGroup">
           <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Personal Details</ng-template>
+            <table class="example-full-width" cellspacing="0"><tr>
+              <td>
+            <label id="user-name-label">Enter your Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <mat-form-field>
               <mat-label>Name</mat-label>
               <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required/>
             </mat-form-field>
+          </td>
+          <td>
+            <label id="user-gender-label">Gender</label>
+            <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                    [(ngModel)]="gender">
+                  <mat-radio-button class="example-radio-button" *ngFor="let gen of gender" [value]="gen">
+                {{gen}}
+                  </mat-radio-button>
+            </mat-radio-group>
+          </td>
+          <td>
+            <label id="user-dob-label">Date Of Birth:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <mat-form-field>
+              <mat-label>Date of Birth</mat-label>
+              <input matInput [matDatepicker]="picker">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+            </mat-form-field>
+          </td>
+            </tr>
+            </table>
             <br/>
             
-              <label id="example-radio-group-label">Gender</label>
-          <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
-                  [(ngModel)]="gender">
-                <mat-radio-button class="example-radio-button" *ngFor="let gen of gender" [value]="gen">
-              {{gen}}
-                </mat-radio-button>
-          </mat-radio-group>
+              
             
             <p>
               <mat-form-field class="example-full-width">
@@ -39,7 +57,7 @@
               </mat-form-field></td>
               <td><mat-form-field class="example-full-width">
                 <mat-label>Postal Code</mat-label>
-                <input matInput #postalCode maxlength="6" placeholder="Ex. 560001" >
+                <input matInput #postalCode maxlength="6" placeholder="Ex. 560001" required>
                 <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
               </mat-form-field></td>
             </tr>
