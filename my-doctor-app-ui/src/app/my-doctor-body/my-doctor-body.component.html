@@ -187,24 +187,40 @@
         <mat-step [stepControl]="thirdFormGroup">
           <form [formGroup]="thirdFormGroup">
             <ng-template matStepLabel>Medical History</ng-template>
-            <mat-form-field>
-              <mat-label>Medical History(if Any)</mat-label>
-              <input matInput formControlName="thirdCtrl" placeholder="Enter Medical History">
-            </mat-form-field>
-            <div class="example-button-row">
-              <button mat-raised-button matStepperNext width="200px" color="primary">Submit</button>
-              <button mat-raised-button matStepperPrevious width="200px" color="warn">Cancel</button>
-              <button mat-raised-button matStepperNext width="1000px" color="warn">Skip This >></button>
-            </div>
+            <mat-drawer-container class="example-container">
+              <h1>Any Underlying Condition ?</h1>
+              <mat-form-field class="example-full-width">
+                <mat-label>Leave a comment</mat-label>
+                <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+              </mat-form-field>
+              <h1>Underwent Any Surgeries ?</h1>
+              <mat-form-field class="example-full-width">
+                <mat-label>Leave a comment</mat-label>
+                <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+              </mat-form-field>
+              <h1>Taking Any Medications ?</h1>
+              <mat-form-field class="example-full-width">
+                <mat-label>Leave a comment</mat-label>
+                <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+              </mat-form-field>
+              <div class="example-button-row">
+                <button mat-raised-button matStepperNext width="200px" color="primary">Submit</button>
+                <button mat-raised-button matStepperPrevious width="200px" color="warn">Cancel</button>
+                <button mat-raised-button matStepperNext width="1000px" color="warn">Skip This >></button>
+              </div>
+            </mat-drawer-container>
+            
           </form>
         </mat-step>
         <mat-step>
           <ng-template matStepLabel>Result</ng-template>
-          <p>You are now done.</p>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
+          <mat-drawer-container class="example-container">
+            <mat-divider [vertical]="true">Hello</mat-divider>
+          <div class="example-button-row">
+            <button mat-raised-button matStepperPrevious width="200px" color="primary">Back</button>
+            <button mat-raised-button (click)="stepper.reset()" color="warn">Take me Home</button>
           </div>
+          </mat-drawer-container>
         </mat-step>
       </mat-horizontal-stepper>
     </div>
