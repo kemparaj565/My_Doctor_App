@@ -8,6 +8,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
+import {ThemePalette} from '@angular/material/core';
 
 
 @Component({
@@ -24,7 +25,8 @@ export class MyDoctorHeaderComponent implements OnInit {
 
   fitInkBarToContent = true;
   links = ['Diseases', 'Symptoms', 'Medicine'];
-  lotsOfTabs = new Array(30).fill(0).map((_, index) => `Tab ${index}`);
   activeLink = this.links[0];
+  background: ThemePalette = 'primary';
+  lotsOfTabs = new Array(30).fill(0).map((_, index) => `Tab ${index}`);
 
 }
