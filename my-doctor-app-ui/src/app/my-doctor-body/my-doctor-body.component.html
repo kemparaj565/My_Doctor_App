@@ -8,8 +8,8 @@
               </mat-drawer>
         
               <div class="example-sidenav-content">
-                <button type="button" mat-raised-button (click)="drawer.toggle()" align-items="end" color="info" style="padding:'10px';align:'right';height: 20px';">
-                  Show sidenav
+                <button type="button" (click)="drawer.toggle()" align-items="end" color="info" style="padding:'10px';align:'right';height: 20px';">
+                  <mat-icon>fast_rewind</mat-icon>
                 </button>
               </div>
             <mat-grid-list class="example-full-width" cols="9" rowHeight="150px">
@@ -45,87 +45,59 @@
             
             <br/>
                          
-            <mat-grid-list class="example-full-width" cols="9" rowHeight="150px">
-              <mat-grid-tile  [colspan]="tiles[2].cols" [rowspan]="tiles[0].rows" [style.background]="tiles[0].color" class="example-tile-style">
-                <label id="user-address-label">Address:&nbsp;&nbsp;&nbsp;</label><br/>
+            <mat-grid-list class="example-full-width" cols="10" rowHeight="150px">
+              <mat-grid-tile  [colspan]="tiles[3].cols" [rowspan]="tiles[0].rows" [style.background]="tiles[0].color" class="example-tile-style">
+                <label id="user-address-label"><mat-icon>opacity</mat-icon>&nbsp;&nbsp;&nbsp;</label><br/>
                 <mat-form-field class="example-full-width">
-                <mat-label>Address</mat-label>
-                <textarea matInput cdkTextareaAutosize
-                #autosize="cdkTextareaAutosize"
-                cdkAutosizeMinRows="1"
-                cdkAutosizeMaxRows="5" placeholder="Ex. 100 Main St"></textarea>
+                <mat-label>Bloodgroup</mat-label>
+                <input matInput placeholder="Ex. O+">
               </mat-form-field>
               </mat-grid-tile>
               <mat-grid-tile  [colspan]="tiles[3].cols" [rowspan]="tiles[0].rows" [style.background]="tiles[0].color" class="example-tile-style">
-                <label id="user-city-label">City:&nbsp;&nbsp;&nbsp;</label><br/>
+                <label id="user-city-label">Height:&nbsp;&nbsp;&nbsp;</label><br/>
                 <mat-form-field class="example-form-field">
-                  <mat-label>City</mat-label>
-                  <input matInput placeholder="Ex. San Francisco">
+                  <mat-label>Height</mat-label>
+                  <input matInput placeholder="Ex. 5Feet 3Inches">
                 </mat-form-field>
               </mat-grid-tile>
               <mat-grid-tile  [colspan]="tiles[3].cols" [rowspan]="tiles[0].rows" [style.background]="tiles[0].color" class="example-tile-style">
-                <label id="user-state-label">State:&nbsp;&nbsp;&nbsp;</label><br/>
+                <label id="user-state-label">Weight&nbsp;&nbsp;&nbsp;</label><br/>
                 <mat-form-field class="example-form-field">
-                  <mat-label>State</mat-label>
-                  <input matInput placeholder="Ex. California">
+                  <mat-label>Weight</mat-label>
+                  <input matInput placeholder="Ex. 80Kgs">
                 </mat-form-field>
               </mat-grid-tile>
               <mat-grid-tile  [colspan]="tiles[3].cols" [rowspan]="tiles[0].rows" [style.background]="tiles[0].color" class="example-tile-style">
-                <label id="user-postal-code-label">Zip Code:&nbsp;&nbsp;&nbsp;</label><br/>
+                <label id="user-email-label"><mat-icon>email</mat-icon>:&nbsp;&nbsp;&nbsp;</label><br/>
                 <mat-form-field class="example-form-field">
-                  <mat-label>Postal Code</mat-label>
-                  <input matInput #postalCode maxlength="6" placeholder="Ex. 560001" required>
-                  <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
-                </mat-form-field>
-              </mat-grid-tile>
+                   <mat-label>Email</mat-label>
+                   <input matInput [formControl]="emailFormControl" placeholder="Ex. user@example.com" required>
+                   <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                     Please enter a valid email address
+                   </mat-error>
+                   <mat-error *ngIf="emailFormControl.hasError('required')">
+                    Email is <strong>required</strong>
+                   </mat-error>
+                 </mat-form-field>
+                 </mat-grid-tile>
+ 
+                 <mat-grid-tile  [colspan]="tiles[3].cols" [rowspan]="tiles[0].rows" [style.background]="tiles[0].color" class="example-tile-style">
+                   <label id="user-mobile-number-label"><mat-icon> call</mat-icon>:&nbsp;&nbsp;&nbsp;</label><br/>
+                   <mat-form-field class="example-form-field">
+                     <mat-label>Mobile Number</mat-label>
+                     <input matInput matInput #phoneNumber maxlength="10" placeholder="Ex. +91-123-456-7890" required>
+                     <mat-hint align="end">{{phoneNumber.value.length}} / 10</mat-hint>
+                     <mat-error *ngIf="phoneFormControl.hasError('email') && !phoneFormControl.hasError('required')">
+                       Please enter a valid phone number
+                     </mat-error>
+                     <mat-error *ngIf="phoneFormControl.hasError('required')">
+                      Phone Number is <strong>required</strong>
+                     </mat-error>
+                   </mat-form-field>
+                   </mat-grid-tile>
             </mat-grid-list>
           <br/>
-            <mat-grid-list class="example-full-width" cols="9" rowHeight="150px">
-              <mat-grid-tile  [colspan]="tiles[2].cols" [rowspan]="tiles[0].rows" [style.background]="tiles[0].color" class="example-tile-style">
-               <label id="user-email-label">E-mail:&nbsp;&nbsp;&nbsp;</label><br/>
-               <mat-form-field class="example-form-field">
-                  <mat-label>Email</mat-label>
-                  <input matInput [formControl]="emailFormControl" placeholder="Ex. user@example.com" required>
-                  <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                    Please enter a valid email address
-                  </mat-error>
-                  <mat-error *ngIf="emailFormControl.hasError('required')">
-                   Email is <strong>required</strong>
-                  </mat-error>
-                </mat-form-field>
-                </mat-grid-tile>
-
-                <mat-grid-tile  [colspan]="tiles[2].cols" [rowspan]="tiles[0].rows" [style.background]="tiles[0].color" class="example-tile-style">
-                  <label id="user-mobile-number-label">Mobile Number:&nbsp;&nbsp;&nbsp;</label><br/>
-                  <mat-form-field class="example-form-field">
-                    <mat-label>Mobile Number</mat-label>
-                    <input matInput matInput #phoneNumber maxlength="10" placeholder="Ex. +91-123-456-7890" required>
-                    <mat-hint align="end">{{phoneNumber.value.length}} / 10</mat-hint>
-                    <mat-error *ngIf="phoneFormControl.hasError('email') && !phoneFormControl.hasError('required')">
-                      Please enter a valid phone number
-                    </mat-error>
-                    <mat-error *ngIf="phoneFormControl.hasError('required')">
-                     Phone Number is <strong>required</strong>
-                    </mat-error>
-                  </mat-form-field>
-                  </mat-grid-tile>
-                
-                  <mat-grid-tile  [colspan]="tiles[2].cols" [rowspan]="tiles[0].rows" [style.background]="tiles[0].color" class="example-tile-style">
-                    <label id="user-residence-number-label">Residence Number:&nbsp;&nbsp;&nbsp;</label><br/>
-                    <mat-form-field class="example-form-field">
-                      <mat-label>Residence Number</mat-label>
-                      <input matInput matInput #phoneNumber maxlength="10" placeholder="Ex. +91-123-456-7890" required>
-                      <mat-hint align="end">{{phoneNumber.value.length}} / 10</mat-hint>
-                      <mat-error *ngIf="phoneFormControl.hasError('email') && !phoneFormControl.hasError('required')">
-                        Please enter a valid phone number
-                      </mat-error>
-                      <mat-error *ngIf="phoneFormControl.hasError('required')">
-                       Phone Number is <strong>required</strong>
-                      </mat-error>
-                    </mat-form-field>
-                    </mat-grid-tile>  
-
-                </mat-grid-list>
+           
             
             <br/>
             
@@ -133,7 +105,7 @@
               <button mat-raised-button matStepperNext width="200px" color="primary">Submit</button>
               <button mat-raised-button (click)="stepper.reset()" width="200px" color="warn">Cancel</button>
             </div>
-        
+            <br/><br/><br/>
         </mat-drawer-container>
           </form>
         </mat-step>
@@ -158,27 +130,12 @@
                 
               </mat-autocomplete>
             </mat-form-field>
-            <h1>Enter your Disease (Optional)</h1><br/>
-            <mat-form-field class="example-chip-list" autosize>
-              <mat-chip-list #chipList aria-label="Fruit selection">
-                <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable" (removed)="remove(fruit)">
-                  {{fruit}}
-                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                </mat-chip>
-                <input placeholder="New fruit..." #fruitInput [formControl]="fruitCtrl" [matAutocomplete]="auto"
-                  [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
-              </mat-chip-list>
-              <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-                <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
-                  {{fruit}}
-                </mat-option>
-                
-              </mat-autocomplete>
-            </mat-form-field>
+          <br/>
             <div class="example-button-row">
               <button mat-raised-button matStepperNext width="200px" color="primary">Submit</button>
               <button mat-raised-button matStepperPrevious width="200px" color="warn">Cancel</button>
             </div>
+            <br/> <br/> <br/>
             </mat-drawer-container>
             
             
@@ -188,7 +145,7 @@
           <form [formGroup]="thirdFormGroup">
             <ng-template matStepLabel>Medical History</ng-template>
             <mat-drawer-container class="example-container">
-              <h1>Any Underlying Condition ?</h1>
+              <h1>Any Underlying Condition ? (E.g: Diabetes, Hypertension)</h1>
               <mat-form-field class="example-full-width">
                 <mat-label>Leave a comment</mat-label>
                 <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
@@ -203,23 +160,35 @@
                 <mat-label>Leave a comment</mat-label>
                 <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
               </mat-form-field>
+              <h1>Any Details we need to know ?</h1>
+              <mat-form-field class="example-full-width">
+                <mat-label>Your Description here</mat-label>
+                <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+              </mat-form-field>
+              <br/>
               <div class="example-button-row">
                 <button mat-raised-button matStepperNext width="200px" color="primary">Submit</button>
                 <button mat-raised-button matStepperPrevious width="200px" color="warn">Cancel</button>
                 <button mat-raised-button matStepperNext width="1000px" color="warn">Skip This >></button>
               </div>
+              <br/><br/><br/>
             </mat-drawer-container>
             
           </form>
         </mat-step>
         <mat-step>
-          <ng-template matStepLabel>Result</ng-template>
+          <ng-template matStepLabel>Report</ng-template>
           <mat-drawer-container class="example-container">
-            <mat-divider [vertical]="true">Hello</mat-divider>
+            <h1>Diagnosis Report</h1>
+            <mat-divider></mat-divider><br/><br/><br/>
+            <h3>Your Personal Details</h3><mat-divider></mat-divider><br/><br/><br/>
+            <h3>Analysis</h3><mat-divider></mat-divider><br/><br/><br/>
+            <br/>
           <div class="example-button-row">
             <button mat-raised-button matStepperPrevious width="200px" color="primary">Back</button>
-            <button mat-raised-button (click)="stepper.reset()" color="warn">Take me Home</button>
+            <button mat-raised-button (click)="stepper.reset()" color="warn"><mat-icon>home</mat-icon> Take me Home</button>
           </div>
+          <br/><br/><br/>
           </mat-drawer-container>
         </mat-step>
       </mat-horizontal-stepper>
