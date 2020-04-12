@@ -8,11 +8,11 @@
               </mat-drawer>
         
               <div class="example-sidenav-content">
-                <button type="button" (click)="drawer.toggle()" align-items="end" color="info" style="padding:'10px';align:'right';height: 20px';">
+                <button class="btn btn-info" type="button" (click)="drawer.toggle()" align-items="end" color="info" style="padding:'10px';align:'right';height: 20px';">
                   <mat-icon>fast_rewind</mat-icon>
                 </button>
               </div>
-            <mat-grid-list class="example-full-width" cols="9" rowHeight="150px">
+            <mat-grid-list class="example-full-width" cols="9" rowHeight="150px" padding="20px">
               <mat-grid-tile  [colspan]="tiles[0].cols" [rowspan]="tiles[0].rows" [style.background]="tiles[0].color" class="example-tile-style">
                 <label id="user-name-label">Patient Name:&nbsp;&nbsp;&nbsp;</label>
             <mat-form-field class="example-form-field">
