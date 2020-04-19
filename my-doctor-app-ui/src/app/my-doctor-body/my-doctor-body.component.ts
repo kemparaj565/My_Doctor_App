@@ -5,6 +5,7 @@ import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/a
 import {MatChipInputEvent} from '@angular/material/chips';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 export interface Tile {
@@ -27,8 +28,10 @@ export class MyDoctorBodyComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
+  
+  httpHeader: HttpHeaders;
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(private _formBuilder: FormBuilder,private http: HttpClient) {
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
       startWith(null),
       map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
@@ -79,6 +82,9 @@ export class MyDoctorBodyComponent implements OnInit {
   filteredFruits: Observable<string[]>;
   fruits: string[] = ['Lemon'];
   allFruits: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
+  diseases: any[] = this.getDiseasesList();
+
+
 
   @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -119,4 +125,24 @@ export class MyDoctorBodyComponent implements OnInit {
 
     return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
   }
+
+  disease: any[];
+  
+  public getDiseaseData(): any[]{
+  this.http.get('http://localhost:8080/list-diseases').subscribe(data => {
+    this.disease = JSON.stringify(data);
+    alert(this.disease);
+  });
+  return this.disease;
+}
+
+public getDiseasesList(): string[]{
+  for( var i of this.disease )
+{
+   this.diseases.push( i.diseaseName );
+}
+alert(this.diseases);
+return this.diseases;
+
+}
 }

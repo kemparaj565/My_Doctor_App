@@ -11,6 +11,10 @@
                 <button class="btn btn-info" type="button" (click)="drawer.toggle()" align-items="end" color="info" style="padding:'10px';align:'right';height: 20px';">
                   <mat-icon>fast_rewind</mat-icon>
                 </button>
+
+                <button class="btn btn-info" type="button" (click)="getDiseaseData()" align-items="end" color="info" style="padding:'10px';align:'right';height: 20px';">
+                  <mat-icon>fast_rewind</mat-icon>
+                </button>
               </div>
             <mat-grid-list class="example-full-width" cols="9" rowHeight="150px" padding="20px">
               <mat-grid-tile  [colspan]="tiles[0].cols" [rowspan]="tiles[0].rows" [style.background]="tiles[0].color" class="example-tile-style">
@@ -163,7 +167,7 @@
               <h1>Any Details we need to know ?</h1>
               <mat-form-field class="example-full-width">
                 <mat-label>Your Description here</mat-label>
-                <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+                <textarea matInput placeholder="Ex. It makes me feel...">{{this.disease}}</textarea>
               </mat-form-field>
               <br/>
               <div class="example-button-row">
