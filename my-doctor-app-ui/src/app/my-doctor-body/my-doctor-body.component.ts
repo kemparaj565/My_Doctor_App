@@ -15,6 +15,14 @@ export interface Tile {
   text: string;
 }
 
+export interface Disease{
+  id: number;
+	diseaseName: string;
+	symptom: string;
+	diseaseDescription: string;
+	durationOfDisease: number;
+}
+
 
 @Component({
   selector: 'my-doctor-body',
@@ -34,7 +42,7 @@ export class MyDoctorBodyComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder,private http: HttpClient) {
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
       startWith(null),
-      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
+      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allDiseases.slice()));
    }
 
   ngOnInit(): void {
@@ -80,9 +88,11 @@ export class MyDoctorBodyComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   fruitCtrl = new FormControl();
   filteredFruits: Observable<string[]>;
-  fruits: string[] = ['Lemon'];
-  allFruits: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
-  diseases: any[] = this.getDiseasesList();
+  fruits: string[] = ['Common Cold'];
+  //allFruits: string[] = this.diseaseList;
+  diseases: Disease[] = this.getDiseaseData();
+  diseaseList: string[]=new Array();
+  allDiseases: string[] = this.diseaseList;
 
 
 
@@ -123,26 +133,25 @@ export class MyDoctorBodyComponent implements OnInit {
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
+    return this.allDiseases.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
   }
 
-  disease: any[];
   
-  public getDiseaseData(): any[]{
-  this.http.get('http://localhost:8080/list-diseases').subscribe(data => {
-    this.disease = JSON.stringify(data);
-    alert(this.disease);
-  });
-  return this.disease;
+  public getDiseaseData(){
+    this.http.get<Disease[]>('http://localhost:8080/list-diseases').subscribe(data => {
+     this.diseases = data;
+  }); 
+  return this.diseases;
 }
+
 
 public getDiseasesList(): string[]{
-  for( var i of this.disease )
+  for( var i of this.diseases )
 {
-   this.diseases.push( i.diseaseName );
+   this.diseaseList.push(i.diseaseName);
 }
-alert(this.diseases);
-return this.diseases;
+alert(this.diseaseList);
+return this.diseaseList;
+}
 
-}
 }
