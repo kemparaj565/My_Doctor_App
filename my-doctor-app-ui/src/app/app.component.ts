@@ -4,6 +4,7 @@ import { MyDoctorSidenavbarComponent } from './my-doctor-sidenavbar/my-doctor-si
 import { MyDoctorFooterComponent } from './my-doctor-footer/my-doctor-footer.component';
 import { MyDoctorBodyComponent } from './my-doctor-body/my-doctor-body.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ConsultationForm } from './my-doctor-body/my-doctor-body.component';
 
 
 @Component({

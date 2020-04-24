@@ -64,7 +64,7 @@
                 <label id="user-state-label">Weight&nbsp;&nbsp;&nbsp;</label><br/>
                 <mat-form-field class="example-form-field">
                   <mat-label>Weight</mat-label>
-                  <input matInput placeholder="Ex. 80Kgs" formControlName="patientHeight">
+                  <input matInput placeholder="Ex. 80Kgs" formControlName="patientWeight">
                 </mat-form-field>
               </mat-grid-tile>
               <mat-grid-tile  [colspan]="tiles[3].cols" [rowspan]="tiles[0].rows" [style.background]="tiles[0].color" class="example-tile-style">
@@ -185,17 +185,18 @@
             <table>
               <tr>
                 <td>Name:</td>
-                <td></td>
+                <td>{{this.patientArray[0]}}</td>
               </tr>
               <tr>
                 <td>Gender:</td>
-                <td>Your Name</td>
+                <td>{{this.patientArray[1]}}</td>
               </tr>
               <tr>
                 <td>Date Of Birth:</td>
-                <td>Your Name</td>
+                <td>{{this.patientArray[2]}}</td>
               </tr>
-              <tr width="100%">
+            </table>
+            <br/><br/><br/>
                 <table>
                   <tr>
                   <th>Blood Group</th>
@@ -203,26 +204,23 @@
                   <th>Weight</th>
                   </tr>
                   <tr>
-                    <td>Your Blood Group</td>
-                    <td>Your Height</td>
-                    <td>Your Weight</td>
+                    <td>{{this.patientArray[3]}}</td>
+                    <td>{{this.patientArray[4]}}</td>
+                    <td>{{this.patientArray[5]}}</td>
                   </tr>
                   </table>
-              </tr>
-                  <tr>
+                    <br/><br/><br/>
                     <table>
-                      <tr>Contact Details</tr>
                       <tr>
                         <th>Email Address</th>
                         <th>Contact Number</th>
                       </tr>
                       <tr>
-                        <td>Your Email Address</td>
-                        <td>Your Contact Number</td>
+                        <td>{{this.patientArray[6]}}</td>
+                        <td>{{this.patientArray[7]}}</td>
                       </tr>
                       </table>
-                  </tr>
-                </table>
+                  
             <br/><br/><br/>
             <h3>Analysis</h3><mat-divider></mat-divider><br/><br/><br/>
             <br/>

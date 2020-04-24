@@ -24,14 +24,14 @@ export interface Disease{
 }
 
 export interface ConsultationForm{
-  patientName: string;
-  patientGender: string;
-  patientDOB: Date;
-  patientBloodGroup: string;
-  patientHeight: string;
-  patientWeight: string;
-  patientEmailAddress: string;
-  patientPhoneNumber: number;
+  patientName: any;
+  patientGender: any;
+  patientDOB: any;
+  patientBloodGroup: any;
+  patientHeight: any;
+  patientWeight: any;
+  patientEmailAddress: any;
+  patientPhoneNumber: any;
 } 
 
 
@@ -108,13 +108,12 @@ export class MyDoctorBodyComponent implements OnInit {
   fruitCtrl = new FormControl();
   filteredFruits: Observable<string[]>;
   fruits: string[] = ['Common Cold'];
-  //allFruits: string[] = this.diseaseList;
   diseases: Disease[] = this.getDiseaseData();
   diseaseList: string[]=new Array();
   allDiseases: string[] = this.diseaseList;
   consultationFormData: any = new FormData();
-  patientInformation : any;
-
+  patientInformation: ConsultationForm;
+  patientArray: string[]= new Array();
 
   @ViewChild('diseaseInput') diseaseInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -180,18 +179,29 @@ return this.diseaseList;
 
 public getPatientData(){
    
-   this.patientInformation={
+   var patientData={
     patientName: this.firstFormGroup.controls['patientName'].value,
+    patientGender: this.firstFormGroup.controls['patientGender'].value,
     patientDOB: this.firstFormGroup.controls['patientDOB'].value,
     patientBloodGroup: this.firstFormGroup.controls['patientBloodGroup'].value,
     patientHeight: this.firstFormGroup.controls['patientHeight'].value,
     patientWeight: this.firstFormGroup.controls['patientWeight'].value,
     patientEmailAddress: this.firstFormGroup.controls['patientEmailAddress'].value,
-    patientPhoneNumber: this.firstFormGroup.controls['patientPhoneNumber'].value,
+    patientPhoneNumber: this.firstFormGroup.controls['patientPhoneNumber'].value
   };
+  this.patientInformation=patientData;
   console.log(this.patientInformation);
   this.getDiseasesList();
+  this.patientArray.push(this.patientInformation.patientName);
+  this.patientArray.push(this.patientInformation.patientGender);
+  this.patientArray.push(this.patientInformation.patientDOB);
+  this.patientArray.push(this.patientInformation.patientBloodGroup);
+  this.patientArray.push(this.patientInformation.patientHeight);
+  this.patientArray.push(this.patientInformation.patientWeight);
+  this.patientArray.push(this.patientInformation.patientEmailAddress);
+  this.patientArray.push(this.patientInformation.patientPhoneNumber);
 }
+
 
 
 }
