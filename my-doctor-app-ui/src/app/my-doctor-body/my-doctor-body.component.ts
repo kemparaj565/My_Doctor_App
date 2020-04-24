@@ -1,10 +1,10 @@
 import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
-import {MatChipInputEvent} from '@angular/material/chips';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import { COMMA, ENTER} from '@angular/cdk/keycodes';
+import { MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
+import { MatChipInputEvent} from '@angular/material/chips';
+import { Observable} from 'rxjs';
+import { map, startWith} from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
@@ -22,6 +22,17 @@ export interface Disease{
 	diseaseDescription: string;
 	durationOfDisease: number;
 }
+
+export interface ConsultationForm{
+  patientName: string;
+  patientGender: string;
+  patientDOB: Date;
+  patientBloodGroup: string;
+  patientHeight: string;
+  patientWeight: string;
+  patientEmailAddress: string;
+  patientPhoneNumber: number;
+} 
 
 
 @Component({
@@ -47,7 +58,15 @@ export class MyDoctorBodyComponent implements OnInit {
 
   ngOnInit(): void {
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      //firstCtrl: ['', Validators.required]
+      patientName: ['', Validators.required],
+      patientGender: [''],
+      patientDOB: ['', Validators.required],
+      patientBloodGroup: [''],
+      patientHeight: [''],
+      patientWeight: [''],
+      patientEmailAddress: [''],
+      patientPhoneNumber: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['']
@@ -93,10 +112,11 @@ export class MyDoctorBodyComponent implements OnInit {
   diseases: Disease[] = this.getDiseaseData();
   diseaseList: string[]=new Array();
   allDiseases: string[] = this.diseaseList;
+  consultationFormData: any = new FormData();
+  patientInformation : any;
 
 
-
-  @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
+  @ViewChild('diseaseInput') diseaseInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
   add(event: MatChipInputEvent): void {
@@ -126,7 +146,7 @@ export class MyDoctorBodyComponent implements OnInit {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.fruits.push(event.option.viewValue);
-    this.fruitInput.nativeElement.value = '';
+    this.diseaseInput.nativeElement.value = '';
     this.fruitCtrl.setValue(null);
   }
 
@@ -146,12 +166,32 @@ export class MyDoctorBodyComponent implements OnInit {
 
 
 public getDiseasesList(): string[]{
-  for( var i of this.diseases )
-{
-   this.diseaseList.push(i.diseaseName);
+
+  while(this.diseaseList.length!=0){
+  this.diseaseList.pop();
 }
-alert(this.diseaseList);
+  for( let  i of Object.keys(this.diseases ))
+{
+  var element=this.diseases[i];
+   this.diseaseList.push(element.diseaseName);
+}
 return this.diseaseList;
 }
+
+public getPatientData(){
+   
+   this.patientInformation={
+    patientName: this.firstFormGroup.controls['patientName'].value,
+    patientDOB: this.firstFormGroup.controls['patientDOB'].value,
+    patientBloodGroup: this.firstFormGroup.controls['patientBloodGroup'].value,
+    patientHeight: this.firstFormGroup.controls['patientHeight'].value,
+    patientWeight: this.firstFormGroup.controls['patientWeight'].value,
+    patientEmailAddress: this.firstFormGroup.controls['patientEmailAddress'].value,
+    patientPhoneNumber: this.firstFormGroup.controls['patientPhoneNumber'].value,
+  };
+  console.log(this.patientInformation);
+  this.getDiseasesList();
+}
+
 
 }

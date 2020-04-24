@@ -11,17 +11,13 @@
                 <button class="btn btn-info" type="button" (click)="drawer.toggle()" align-items="end" color="info" style="padding:'10px';align:'right';height: 20px';">
                   <mat-icon>fast_rewind</mat-icon>
                 </button>
-
-                <button class="btn btn-info" type="button" (click)="getDiseasesList()" align-items="end" color="info" style="padding:'10px';align:'right';height: 20px';">
-                  <mat-icon>fast_rewind</mat-icon>
-                </button>
               </div>
             <mat-grid-list class="example-full-width" cols="9" rowHeight="150px" padding="20px">
               <mat-grid-tile  [colspan]="tiles[0].cols" [rowspan]="tiles[0].rows" [style.background]="tiles[0].color" class="example-tile-style">
                 <label id="user-name-label">Patient Name:&nbsp;&nbsp;&nbsp;</label>
             <mat-form-field class="example-form-field">
               <mat-label>Name</mat-label>
-              <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required/>
+              <input matInput placeholder="Last name, First name" formControlName="patientName" required/>
               <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
                 <mat-icon>close</mat-icon>
               </button>
@@ -40,7 +36,7 @@
             <label id="user-dob-label">Date Of Birth:&nbsp;&nbsp;&nbsp;</label>
             <mat-form-field class="example-form-field">             
               <mat-label>Date of Birth</mat-label>
-              <input matInput [matDatepicker]="picker">
+              <input matInput [matDatepicker]="picker" formControlName="patientDOB">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
             </mat-form-field>
@@ -54,28 +50,28 @@
                 <label id="user-address-label"><mat-icon>opacity</mat-icon>&nbsp;&nbsp;&nbsp;</label><br/>
                 <mat-form-field class="example-full-width">
                 <mat-label>Bloodgroup</mat-label>
-                <input matInput placeholder="Ex. O+">
+                <input matInput placeholder="Ex. O+" formControlName="patientBloodGroup">
               </mat-form-field>
               </mat-grid-tile>
               <mat-grid-tile  [colspan]="tiles[3].cols" [rowspan]="tiles[0].rows" [style.background]="tiles[0].color" class="example-tile-style">
                 <label id="user-city-label">Height:&nbsp;&nbsp;&nbsp;</label><br/>
                 <mat-form-field class="example-form-field">
                   <mat-label>Height</mat-label>
-                  <input matInput placeholder="Ex. 5Feet 3Inches">
+                  <input matInput placeholder="Ex. 5Feet 3Inches" formControlName="patientHeight">
                 </mat-form-field>
               </mat-grid-tile>
               <mat-grid-tile  [colspan]="tiles[3].cols" [rowspan]="tiles[0].rows" [style.background]="tiles[0].color" class="example-tile-style">
                 <label id="user-state-label">Weight&nbsp;&nbsp;&nbsp;</label><br/>
                 <mat-form-field class="example-form-field">
                   <mat-label>Weight</mat-label>
-                  <input matInput placeholder="Ex. 80Kgs">
+                  <input matInput placeholder="Ex. 80Kgs" formControlName="patientHeight">
                 </mat-form-field>
               </mat-grid-tile>
               <mat-grid-tile  [colspan]="tiles[3].cols" [rowspan]="tiles[0].rows" [style.background]="tiles[0].color" class="example-tile-style">
                 <label id="user-email-label"><mat-icon>email</mat-icon>:&nbsp;&nbsp;&nbsp;</label><br/>
                 <mat-form-field class="example-form-field">
                    <mat-label>Email</mat-label>
-                   <input matInput [formControl]="emailFormControl" placeholder="Ex. user@example.com" required>
+                   <input matInput [formControl]="emailFormControl" placeholder="Ex. user@example.com" formControlName="patientEmailAddress" required>
                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
                      Please enter a valid email address
                    </mat-error>
@@ -89,7 +85,7 @@
                    <label id="user-mobile-number-label"><mat-icon> call</mat-icon>:&nbsp;&nbsp;&nbsp;</label><br/>
                    <mat-form-field class="example-form-field">
                      <mat-label>Mobile Number</mat-label>
-                     <input matInput matInput #phoneNumber maxlength="10" placeholder="Ex. +91-123-456-7890" required>
+                     <input matInput matInput #phoneNumber maxlength="10" placeholder="Ex. +91-123-456-7890" formControlName="patientPhoneNumber" required>
                      <mat-hint align="end">{{phoneNumber.value.length}} / 10</mat-hint>
                      <mat-error *ngIf="phoneFormControl.hasError('email') && !phoneFormControl.hasError('required')">
                        Please enter a valid phone number
@@ -106,7 +102,7 @@
             <br/>
             
             <div class="example-button-row">
-              <button mat-raised-button matStepperNext width="200px" color="primary">Submit</button>
+              <button mat-raised-button matStepperNext width="200px" color="primary" (click)="getPatientData()">Submit</button>
               <button mat-raised-button (click)="stepper.reset()" width="200px" color="warn">Cancel</button>
             </div>
             <br/><br/><br/>
@@ -124,7 +120,7 @@
                   {{fruit}}
                   <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                 </mat-chip>
-                <input placeholder="New fruit..." #fruitInput [formControl]="fruitCtrl" [matAutocomplete]="auto"
+                <input placeholder="Enter Disease..." #diseaseInput [formControl]="fruitCtrl" [matAutocomplete]="auto"
                   [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
               </mat-chip-list>
               <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
@@ -185,7 +181,49 @@
           <mat-drawer-container class="example-container">
             <h1>Diagnosis Report</h1>
             <mat-divider></mat-divider><br/><br/><br/>
-            <h3>Your Personal Details</h3><mat-divider></mat-divider><br/><br/><br/>
+            <h3>Your Personal Details</h3><mat-divider></mat-divider>
+            <table>
+              <tr>
+                <td>Name:</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Gender:</td>
+                <td>Your Name</td>
+              </tr>
+              <tr>
+                <td>Date Of Birth:</td>
+                <td>Your Name</td>
+              </tr>
+              <tr width="100%">
+                <table>
+                  <tr>
+                  <th>Blood Group</th>
+                  <th>Height</th>
+                  <th>Weight</th>
+                  </tr>
+                  <tr>
+                    <td>Your Blood Group</td>
+                    <td>Your Height</td>
+                    <td>Your Weight</td>
+                  </tr>
+                  </table>
+              </tr>
+                  <tr>
+                    <table>
+                      <tr>Contact Details</tr>
+                      <tr>
+                        <th>Email Address</th>
+                        <th>Contact Number</th>
+                      </tr>
+                      <tr>
+                        <td>Your Email Address</td>
+                        <td>Your Contact Number</td>
+                      </tr>
+                      </table>
+                  </tr>
+                </table>
+            <br/><br/><br/>
             <h3>Analysis</h3><mat-divider></mat-divider><br/><br/><br/>
             <br/>
           <div class="example-button-row">
