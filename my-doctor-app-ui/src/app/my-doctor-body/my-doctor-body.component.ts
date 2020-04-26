@@ -74,7 +74,10 @@ export class MyDoctorBodyComponent implements OnInit {
     });
     this.thirdFormGroup = this._formBuilder.group({
       thirdCtrl: [''],
-      underLyingConditions:['']
+      underLyingConditions:[''],
+      anySurgeries:[''],
+      anyMedications:[''],
+      otherDetails:['']
     });
   }
 
@@ -207,15 +210,17 @@ public getPatientData(){
 
 public getMedicalHistory(){
   var medicalHistory={
-    underLyingCondition: this.thirdFormGroup.controls['underLyingConditions'].value,
-    anySurgeries: this.thirdFormGroup.controls['anySurgeries'].value,
-    anyMedications: this.thirdFormGroup.controls['anyMedications'].value,
-    otherDetails: this.thirdFormGroup.controls['otherDetails'].value
+        underLyingConditions: this.thirdFormGroup.value.underLyingConditions,
+        anySurgeries: this.thirdFormGroup.value.anySurgeries,
+        anyMedications: this.thirdFormGroup.value.anyMedications,
+        otherDetails: this.thirdFormGroup.value.otherDetails
 
   };
-  this.patientArray.push(medicalHistory.underLyingCondition);
-  alert(this.patientArray[8]);
-  console.log(this.patientArray[8]);
+  this.patientArray.push(medicalHistory.underLyingConditions);
+  this.patientArray.push(medicalHistory.anySurgeries);
+  this.patientArray.push(medicalHistory.anyMedications);
+  this.patientArray.push(medicalHistory.otherDetails);
+  console.log(this.patientArray);
 }  
 
 

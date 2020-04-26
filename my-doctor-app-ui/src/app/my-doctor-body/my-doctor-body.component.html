@@ -153,17 +153,17 @@
               <h1>Underwent Any Surgeries ?</h1>
               <mat-form-field class="example-full-width">
                 <mat-label>Leave a comment</mat-label>
-                <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+                <textarea matInput placeholder="Ex. It makes me feel..." formControlName="anySurgeries"></textarea>
               </mat-form-field>
               <h1>Taking Any Medications ?</h1>
               <mat-form-field class="example-full-width">
                 <mat-label>Leave a comment</mat-label>
-                <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+                <textarea matInput placeholder="Ex. It makes me feel..." formControlName="anyMedications"></textarea>
               </mat-form-field>
               <h1>Any Details we need to know ?</h1>
               <mat-form-field class="example-full-width">
                 <mat-label>Your Description here</mat-label>
-                <textarea matInput placeholder="Ex. It makes me feel...">{{this.diseases}}</textarea>
+                <textarea matInput placeholder="Ex. It makes me feel..." formControlName="otherDetails"></textarea>
               </mat-form-field>
               <br/>
               <div class="example-button-row">
@@ -223,7 +223,7 @@
             <h3><b>Analysis</b></h3><mat-divider></mat-divider>
             <table>
               <tr>
-              <td>Disease's Provided(If any)</td>
+              <td><b>Disease's Provided(If any)</b></td>
               <td>
                 <ul *ngFor="let dis of this.fruits" style="list-style: none;">
                   <li>{{dis}}</li>
@@ -231,6 +231,22 @@
               </td>
                 </tr>
               </table>
+              <br/><br/>
+              <mat-divider></mat-divider>
+              <table>
+                <tr>
+                  <th>Under-Lying Conditions</th>
+                  <th>Any Surgeries</th>
+                  <th>Any Medications</th>
+                  <th>Other Details</th>
+                </tr>
+                <tr>
+                <td>{{this.patientArray[8]}}</td>
+                <td>{{this.patientArray[9]}}</td>
+                <td>{{this.patientArray[10]}}</td>
+                <td>{{this.patientArray[11]}}</td>
+                  </tr>
+                </table>
             
             <br/><br/><br/>
             <br/>
