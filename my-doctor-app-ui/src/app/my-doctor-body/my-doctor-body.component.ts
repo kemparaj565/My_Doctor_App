@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
@@ -59,20 +59,22 @@ export class MyDoctorBodyComponent implements OnInit {
   ngOnInit(): void {
     this.firstFormGroup = this._formBuilder.group({
       //firstCtrl: ['', Validators.required]
-      patientName: ['', Validators.required],
+      patientName: [''],
       patientGender: [''],
-      patientDOB: ['', Validators.required],
+      patientDOB: [''],
       patientBloodGroup: [''],
       patientHeight: [''],
       patientWeight: [''],
       patientEmailAddress: [''],
-      patientPhoneNumber: ['', Validators.required]
+      patientPhoneNumber: ['']
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['']
+      secondCtrl: [''],
+      patientDisease: ['']
     });
     this.thirdFormGroup = this._formBuilder.group({
-      thirdCtrl: ['']
+      thirdCtrl: [''],
+      underLyingConditions:['']
     });
   }
 
@@ -107,16 +109,18 @@ export class MyDoctorBodyComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   fruitCtrl = new FormControl();
   filteredFruits: Observable<string[]>;
-  fruits: string[] = ['Common Cold'];
+  fruits: string[]= new Array();
   diseases: Disease[] = this.getDiseaseData();
   diseaseList: string[]=new Array();
   allDiseases: string[] = this.diseaseList;
   consultationFormData: any = new FormData();
   patientInformation: ConsultationForm;
   patientArray: string[]= new Array();
+  patientDiseaseArray: string[] = new Array();
 
   @ViewChild('diseaseInput') diseaseInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
+ 
 
   add(event: MatChipInputEvent): void {
     const input = event.input;
@@ -190,7 +194,6 @@ public getPatientData(){
     patientPhoneNumber: this.firstFormGroup.controls['patientPhoneNumber'].value
   };
   this.patientInformation=patientData;
-  console.log(this.patientInformation);
   this.getDiseasesList();
   this.patientArray.push(this.patientInformation.patientName);
   this.patientArray.push(this.patientInformation.patientGender);
@@ -201,6 +204,19 @@ public getPatientData(){
   this.patientArray.push(this.patientInformation.patientEmailAddress);
   this.patientArray.push(this.patientInformation.patientPhoneNumber);
 }
+
+public getMedicalHistory(){
+  var medicalHistory={
+    underLyingCondition: this.thirdFormGroup.controls['underLyingConditions'].value,
+    anySurgeries: this.thirdFormGroup.controls['anySurgeries'].value,
+    anyMedications: this.thirdFormGroup.controls['anyMedications'].value,
+    otherDetails: this.thirdFormGroup.controls['otherDetails'].value
+
+  };
+  this.patientArray.push(medicalHistory.underLyingCondition);
+  alert(this.patientArray[8]);
+  console.log(this.patientArray[8]);
+}  
 
 
 
