@@ -34,6 +34,17 @@ export interface ConsultationForm{
   patientPhoneNumber: any;
 } 
 
+export interface Medicine{
+  id: number;
+  medicineName: string;
+  diseaseName: string;
+  symptomName: string;
+  treatmentDescription: string;
+  numberOfTimesPrescribed: number;
+  vendorName: string;
+  durationToUse: number;
+}
+
 
 @Component({
   selector: 'my-doctor-body',
@@ -120,6 +131,7 @@ export class MyDoctorBodyComponent implements OnInit {
   patientInformation: ConsultationForm;
   patientArray: string[]= new Array();
   patientDiseaseArray: string[] = new Array();
+  medicines: Medicine[]= new Array();
 
   @ViewChild('diseaseInput') diseaseInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -228,8 +240,19 @@ public getMedicalHistory(){
     this.patientArray.push(medicalHistory.anyMedications);
     this.patientArray.push(medicalHistory.otherDetails);
   }
+  this.getMedicineInformation();
 }  
 
+public getMedicineInformation(){
+  let url='http://localhost:8080/list-medicine-by-disease?diseaseName='+this.fruits[0];
+  alert(url);
+  this.http.get<Medicine[]>(url).subscribe(data => {
+   this.medicines = data;
+   console.log(this.medicines);
+}); 
+console.log(this.medicines);
+return this.medicines;
+}
 
 
 }

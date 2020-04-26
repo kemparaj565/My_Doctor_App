@@ -246,10 +246,20 @@
                 <td>{{this.patientArray[10]}}</td>
                 <td>{{this.patientArray[11]}}</td>
                   </tr>
-                </table>
-            
-            <br/><br/><br/>
+                </table>            
             <br/>
+                  <h3><b>Our Recommendation</b></h3>
+                    <table>
+                      <tr>
+                        <th>Disease</th>
+                        <th>Medication</th>
+                      </tr>
+                      <tr *ngFor="let med of this.medicines">
+                        <td>{{med.diseaseName}}</td>
+                        <td>{{med.medicineName}}</td>
+                      </tr>
+                    </table>
+            <br/><br/><br/>
           <div class="example-button-row">
             <button mat-raised-button matStepperPrevious width="200px" color="primary">Back</button>
             <button mat-raised-button (click)="stepper.reset()" color="warn"><mat-icon>home</mat-icon> Take me Home</button>
