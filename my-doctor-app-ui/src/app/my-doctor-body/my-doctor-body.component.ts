@@ -216,11 +216,18 @@ public getMedicalHistory(){
         otherDetails: this.thirdFormGroup.value.otherDetails
 
   };
-  this.patientArray.push(medicalHistory.underLyingConditions);
-  this.patientArray.push(medicalHistory.anySurgeries);
-  this.patientArray.push(medicalHistory.anyMedications);
-  this.patientArray.push(medicalHistory.otherDetails);
-  console.log(this.patientArray);
+  if(medicalHistory.anySurgeries=='' || medicalHistory.underLyingConditions==''||medicalHistory.anyMedications==''||medicalHistory.otherDetails==''){
+    this.patientArray.push("None");
+    this.patientArray.push("None");
+    this.patientArray.push("None");
+    this.patientArray.push("None");
+  }
+  else{
+    this.patientArray.push(medicalHistory.underLyingConditions);
+    this.patientArray.push(medicalHistory.anySurgeries);
+    this.patientArray.push(medicalHistory.anyMedications);
+    this.patientArray.push(medicalHistory.otherDetails);
+  }
 }  
 
 
