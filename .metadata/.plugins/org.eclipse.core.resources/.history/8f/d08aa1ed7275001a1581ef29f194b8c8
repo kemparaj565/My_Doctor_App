@@ -1,5 +1,0 @@
-package com.mydoctorapp.data.controller;
-
-public class DiseaseRestController {
-
-}

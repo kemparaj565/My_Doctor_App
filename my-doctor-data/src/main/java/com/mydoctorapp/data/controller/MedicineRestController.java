@@ -70,4 +70,14 @@ public class MedicineRestController {
 		return medicine;
 	}
 	
+	@GetMapping("/list-medicine-by-symptom")
+	public List<Medicine> getMedicineForSymptom(@RequestParam String symptomName){
+		return medicineRepo.findBySymptomNameContaining(symptomName);
+	}
+	
+	
+	@GetMapping("/list-medicine-by-disease")
+	public List<Medicine> getMedicineForDisease(@RequestParam String diseaseName){
+		return medicineRepo.findDistinctByDiseaseNameContaining(diseaseName);
+	}
 }
