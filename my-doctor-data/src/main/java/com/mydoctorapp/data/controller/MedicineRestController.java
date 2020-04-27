@@ -1,5 +1,6 @@
 package com.mydoctorapp.data.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,9 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mydoctorapp.data.bean.Disease;
 import com.mydoctorapp.data.bean.Medicine;
-import com.mydoctorapp.data.bean.Symptom;
 import com.mydoctorapp.data.repository.MedicineRepository;
 
 @CrossOrigin
@@ -78,6 +77,17 @@ public class MedicineRestController {
 	
 	@GetMapping("/list-medicine-by-disease")
 	public List<Medicine> getMedicineForDisease(@RequestParam String diseaseName){
-		return medicineRepo.findDistinctByDiseaseNameContaining(diseaseName);
+		List<Medicine> medList= medicineRepo.findDistinctByDiseaseNameContaining(diseaseName);
+		List<Medicine> finalList=new ArrayList<>();
+//		finalList.add(medList.get(0));
+//		medList.stream().map(x ->
+//		{
+//			if(!finalList.contains(x)) {
+//				finalList.add(x);
+//			}
+//			return finalList;
+//		});
+//		return finalList;
+		return medList;
 	}
 }
