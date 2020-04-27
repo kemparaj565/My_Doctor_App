@@ -45,6 +45,21 @@ export interface Medicine{
   durationToUse: number;
 }
 
+export interface Symptom{
+  id: number;
+  symptomName: string;
+	symptomDescription: string;
+	durationOfSymptom: number;
+}
+
+export interface TreatmentProtocol{
+  id: number;
+  diseaseName: string;
+  symptomName: string;
+  medicineName: string;
+  durationToUse: number;
+}
+
 
 @Component({
   selector: 'my-doctor-body',
@@ -64,7 +79,7 @@ export class MyDoctorBodyComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder,private http: HttpClient) {
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
       startWith(null),
-      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allDiseases.slice()));
+      map((fruit: string | null) => fruit ? this._filter(fruit) : this.symptomsList.slice()));
    }
 
   ngOnInit(): void {
@@ -132,6 +147,8 @@ export class MyDoctorBodyComponent implements OnInit {
   patientArray: string[]= new Array();
   patientDiseaseArray: string[] = new Array();
   medicines: Medicine[]= new Array();
+  symptoms: Symptom[]= this.getSymptomData();
+  symptomsList: string[] = new Array();
 
   @ViewChild('diseaseInput') diseaseInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -210,6 +227,7 @@ public getPatientData(){
   };
   this.patientInformation=patientData;
   this.getDiseasesList();
+  this.getSymptomsList();
   this.patientArray.push(this.patientInformation.patientName);
   this.patientArray.push(this.patientInformation.patientGender);
   this.patientArray.push(this.patientInformation.patientDOB);
@@ -272,6 +290,26 @@ console.log(this.medicines.filter((obj, pos, arr) => {
   return arr.map(mapObj => mapObj["value"]).indexOf(obj["value"]) === pos;
 }));
 return this.medicines;
+}
+
+public getSymptomData(){
+  this.http.get<Symptom[]>('http://localhost:8080/list-symptoms').subscribe(data => {
+   this.symptoms = data;
+}); 
+return this.symptoms;
+}
+
+public getSymptomsList(): string[]{
+
+  while(this.symptomsList.length!=0){
+  this.symptomsList.pop();
+}
+  for( let  i of Object.keys(this.symptoms))
+{
+  var element=this.symptoms[i];
+   this.diseaseList.push(element.symptomName);
+}
+return this.symptomsList;
 }
 
 
