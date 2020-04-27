@@ -245,12 +245,32 @@ public getMedicalHistory(){
 
 public getMedicineInformation(){
   let url='http://localhost:8080/list-medicine-by-disease?diseaseName='+this.fruits[0];
-  alert(url);
   this.http.get<Medicine[]>(url).subscribe(data => {
    this.medicines = data;
-   console.log(this.medicines);
 }); 
-console.log(this.medicines);
+let medArr:Medicine[] = new Array();
+
+if(medArr.length==0){
+  medArr.push(this.medicines[0]);
+}
+
+  for(let i=0,j=1; i<this.medicines.length,j<this.medicines.length-1;i++,j++){
+
+    if(this.medicines[i].medicineName==this.medicines[j].medicineName){
+      continue;
+    }
+    else{
+      medArr.push(this.medicines[i]);
+    }
+
+}
+
+this.medicines=new Array();
+this.medicines=medArr;
+console.log(medArr);
+console.log(this.medicines.filter((obj, pos, arr) => {
+  return arr.map(mapObj => mapObj["value"]).indexOf(obj["value"]) === pos;
+}));
 return this.medicines;
 }
 

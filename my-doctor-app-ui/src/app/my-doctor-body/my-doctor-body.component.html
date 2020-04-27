@@ -247,16 +247,20 @@
                 <td>{{this.patientArray[11]}}</td>
                   </tr>
                 </table>            
-            <br/>
-                  <h3><b>Our Recommendation</b></h3>
+            <br/><br/><br/>
+                  <h3><b>Our Recommendation</b></h3><mat-divider></mat-divider>
                     <table>
                       <tr>
                         <th>Disease</th>
+                        <th>Symptom</th>
                         <th>Medication</th>
+                        <th>Duration of Medication</th>
                       </tr>
                       <tr *ngFor="let med of this.medicines">
                         <td>{{med.diseaseName}}</td>
+                        <td>{{med.symptomName}}</td>
                         <td>{{med.medicineName}}</td>
+                        <td>{{med.durationToUse}}</td>
                       </tr>
                     </table>
             <br/><br/><br/>
