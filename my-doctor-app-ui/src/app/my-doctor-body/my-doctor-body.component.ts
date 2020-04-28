@@ -124,7 +124,7 @@ export class MyDoctorBodyComponent implements OnInit {
     Validators.email,
   ]); 
 
-  gender: string[] = ['Male', 'Female', 'Trans-Gender', 'Won\'t Reveal'];
+  gender: string[] = ['Male', 'Female', 'Other'];
 
   startDate = new Date(1975, 0, 1);
 
@@ -246,16 +246,28 @@ public getMedicalHistory(){
         otherDetails: this.thirdFormGroup.value.otherDetails
 
   };
-  if(medicalHistory.anySurgeries=='' || medicalHistory.underLyingConditions==''||medicalHistory.anyMedications==''||medicalHistory.otherDetails==''){
-    this.patientArray.push("None");
-    this.patientArray.push("None");
-    this.patientArray.push("None");
+  if(medicalHistory.anySurgeries=='') {
     this.patientArray.push("None");
   }
   else{
     this.patientArray.push(medicalHistory.underLyingConditions);
+  }
+  if(medicalHistory.underLyingConditions==''){
+    this.patientArray.push("None");
+  }
+  else{
     this.patientArray.push(medicalHistory.anySurgeries);
+  }
+  if(medicalHistory.anyMedications==''){
+    this.patientArray.push("None");
+  }
+  else{
     this.patientArray.push(medicalHistory.anyMedications);
+  }
+  if(medicalHistory.otherDetails==''){
+    this.patientArray.push("None");
+  }
+  else{
     this.patientArray.push(medicalHistory.otherDetails);
   }
   this.getMedicineInformation();
@@ -312,5 +324,10 @@ public getSymptomsList(): string[]{
 return this.symptomsList;
 }
 
+public clearForms(){
+  while(this.patientArray.length!=0){
+    this.patientArray.pop();
+  }
+}
 
 }

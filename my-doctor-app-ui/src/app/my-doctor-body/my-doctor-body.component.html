@@ -254,18 +254,20 @@
                         <th>Disease</th>
                         <th>Symptom</th>
                         <th>Medication</th>
+                        <th>Treatment Description</th>
                         <th>Duration of Medication</th>
                       </tr>
                       <tr *ngFor="let med of this.medicines">
                         <td>{{med.diseaseName}}</td>
                         <td>{{med.symptomName}}</td>
                         <td>{{med.medicineName}}</td>
+                        <td>{{med.treatmentDescription}}</td>
                         <td>{{med.durationToUse}}</td>
                       </tr>
                     </table>
             <br/><br/><br/>
           <div class="example-button-row">
-            <button mat-raised-button matStepperPrevious width="200px" color="primary">Back</button>
+            <button mat-raised-button matStepperPrevious width="200px" color="primary" (click)="clearForms()">Back</button>
             <button mat-raised-button (click)="stepper.reset()" color="warn"><mat-icon>home</mat-icon> Take me Home</button>
           </div>
           <br/><br/><br/>
