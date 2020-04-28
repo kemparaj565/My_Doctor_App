@@ -188,7 +188,7 @@ export class MyDoctorBodyComponent implements OnInit {
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.allDiseases.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
+    return this.symptomsList.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
   }
 
   
@@ -319,7 +319,7 @@ public getSymptomsList(): string[]{
   for( let  i of Object.keys(this.symptoms))
 {
   var element=this.symptoms[i];
-   this.diseaseList.push(element.symptomName);
+   this.symptomsList.push(element.symptomName);
 }
 return this.symptomsList;
 }
