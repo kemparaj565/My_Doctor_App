@@ -1,9 +1,13 @@
 package com.mydoctorapp.data.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
+import javax.naming.NamingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mydoctorapp.data.bean.Disease;
 import com.mydoctorapp.data.bean.Symptom;
+import com.mydoctorapp.data.bean.TreatmentProtocol;
+import com.mydoctorapp.data.dao.TreatmentProtocolImpl;
 import com.mydoctorapp.data.repository.SymptomRepository;
 
 @CrossOrigin
@@ -24,6 +30,9 @@ public class SymptomRestController {
 	
 	@Autowired
 	SymptomRepository symptomRepo;
+	
+	@Autowired
+	TreatmentProtocolImpl treatmentImpl;
 	
 	
 	@GetMapping("/list-symptoms")
@@ -66,6 +75,12 @@ public class SymptomRestController {
 		Optional<Symptom> symptom=symptomRepo.findById(id);
 		symptomRepo.deleteById(id);
 		return symptom;
+	}
+	
+	@GetMapping("/get-treatment-protocol")
+	public List<TreatmentProtocol> getTreatmentProtocol(@RequestParam("symptomName") String symptomName) throws ClassNotFoundException, SQLException, NamingException{
+		return treatmentImpl.locateProtocol(symptomName);
+		
 	}
 	
 }

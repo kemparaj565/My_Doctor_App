@@ -1,36 +1,65 @@
 package com.mydoctorapp.data.bean;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.NoArgsConstructor;
 
-@Entity
+
+
+
+//@NamedNativeQuery(name="getTreatmentProtocol",query="SELECT distinct dis.disease_name,sym.symptom_name,med.medicine_name,med.Treatment_description," + 
+//		"med.duration_to_use FROM SYMPTOM  sym JOIN  DISEASE dis on  sym.symptom_name=dis.symptom" + 
+//		"join medicine med on med.symptom_name=sym.symptom_name where sym.symptom_name=?1",resultClass=TreatmentProtocol.class)
+
 @NoArgsConstructor
-public class TreatmentProtocol {
+public class TreatmentProtocol{
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="Protocol_ID")
-	private Integer id;
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@Column(name="Protocol_ID")
+//	@JsonIgnore
+	private Integer protocolId;
 	
 	private String diseaseName;
 	
+	
 	private String symptomName;
 	
+//	@OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name="med_symptomName", referencedColumnName="symptomName",nullable = false, updatable = false)
+//	@JoinColumns({
+//        @JoinColumn(name="ADDR_ID", referencedColumnName="ID"),
+//    
+//        @JoinColumn(name="treatmentDescription"),
+//        @JoinColumn(name="durationToUse")
+//    })
 	private String medicineName;
 	
-	private long durationOfMedication;
+	private String medicineDescription;
+	
+	private Long medicineDuration;
 
-	public TreatmentProtocol(String diseaseName, String symptomName, String medicineName, long durationOfMedication) {
+	public TreatmentProtocol(String diseaseName, String symptomName, String medicineName, String medicineDescription,
+			Long medicineDuration) {
 		super();
 		this.diseaseName = diseaseName;
 		this.symptomName = symptomName;
 		this.medicineName = medicineName;
-		this.durationOfMedication = durationOfMedication;
+		this.medicineDescription = medicineDescription;
+		this.medicineDuration = medicineDuration;
+	}
+
+	public Integer getProtocolId() {
+		return protocolId;
+	}
+
+	public void setProtocolId(Integer protocolId) {
+		this.protocolId = protocolId;
 	}
 
 	public String getDiseaseName() {
@@ -57,24 +86,25 @@ public class TreatmentProtocol {
 		this.medicineName = medicineName;
 	}
 
-	public long getDurationOfMedication() {
-		return durationOfMedication;
+	public String getMedicineDescription() {
+		return medicineDescription;
 	}
 
-	public void setDurationOfMedication(long durationOfMedication) {
-		this.durationOfMedication = durationOfMedication;
+	public void setMedicineDescription(String medicineDescription) {
+		this.medicineDescription = medicineDescription;
 	}
 
-	public Integer getId() {
-		return id;
+	public Long getMedicineDuration() {
+		return medicineDuration;
 	}
+
+	public void setMedicineDuration(Long medicineDuration) {
+		this.medicineDuration = medicineDuration;
+	}
+
 	
 	
-	
-	
-	
-	
-	
-	
+
+
 
 }

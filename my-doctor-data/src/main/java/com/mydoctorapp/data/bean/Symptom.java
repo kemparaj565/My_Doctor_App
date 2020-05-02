@@ -22,6 +22,7 @@ public class Symptom {
 	private String symptomDescription;
 	private Long durationOfSymptom;
 	
+	
 	public String getSymptomName() {
 		return symptomName;
 	}

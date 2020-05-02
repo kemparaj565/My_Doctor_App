@@ -1,0 +1,6 @@
+Query to join 3 tables based on symptoms
+
+
+SELECT distinct dis.disease_name,sym.symptom_name,med.medicine_name,med.Treatment_description,
+med.duration_to_use FROM SYMPTOM  sym JOIN  DISEASE dis on  sym.symptom_name=dis.symptom 
+join medicine med on med.symptom_name=sym.symptom_name where sym.symptom_name='Vomiting'
