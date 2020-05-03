@@ -223,7 +223,7 @@
             <h3><b>Analysis</b></h3><mat-divider></mat-divider>
             <table>
               <tr>
-              <td><b>Disease's Provided(If any)</b></td>
+              <td><b>Symptom's Provided</b></td>
               <td>
                 <ul *ngFor="let dis of this.fruits" style="list-style: none;">
                   <li>{{dis}}</li>
@@ -257,12 +257,12 @@
                         <th>Treatment Description</th>
                         <th>Duration of Medication</th>
                       </tr>
-                      <tr *ngFor="let med of this.medicines">
+                      <tr *ngFor="let med of this.treamentProtocol">
                         <td>{{med.diseaseName}}</td>
                         <td>{{med.symptomName}}</td>
                         <td>{{med.medicineName}}</td>
-                        <td>{{med.treatmentDescription}}</td>
-                        <td>{{med.durationToUse}}</td>
+                        <td>{{med.medicineDescription}}</td>
+                        <td>{{med.medicineDuration}}</td>
                       </tr>
                     </table>
             <br/><br/><br/>

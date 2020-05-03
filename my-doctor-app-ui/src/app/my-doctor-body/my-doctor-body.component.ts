@@ -53,11 +53,12 @@ export interface Symptom{
 }
 
 export interface TreatmentProtocol{
-  id: number;
+  id: string;
   diseaseName: string;
   symptomName: string;
   medicineName: string;
-  durationToUse: number;
+  medicineDescription: string;
+  medicineDuration: number;
 }
 
 
@@ -149,6 +150,7 @@ export class MyDoctorBodyComponent implements OnInit {
   medicines: Medicine[]= new Array();
   symptoms: Symptom[]= this.getSymptomData();
   symptomsList: string[] = new Array();
+  treamentProtocol : TreatmentProtocol[] = new Array();
 
   @ViewChild('diseaseInput') diseaseInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -270,7 +272,9 @@ public getMedicalHistory(){
   else{
     this.patientArray.push(medicalHistory.otherDetails);
   }
+  this.getTreatmentInformation();
   this.getMedicineInformation();
+  //this.getTreatmentInformation();
 }  
 
 public getMedicineInformation(){
@@ -298,9 +302,9 @@ if(medArr.length==0){
 this.medicines=new Array();
 this.medicines=medArr;
 console.log(medArr);
-console.log(this.medicines.filter((obj, pos, arr) => {
-  return arr.map(mapObj => mapObj["value"]).indexOf(obj["value"]) === pos;
-}));
+// console.log(this.medicines.filter((obj, pos, arr) => {
+//   return arr.map(mapObj => mapObj["value"]).indexOf(obj["value"]) === pos;
+// }));
 return this.medicines;
 }
 
@@ -328,6 +332,37 @@ public clearForms(){
   while(this.patientArray.length!=0){
     this.patientArray.pop();
   }
+}
+
+public getTreatmentInformation(){
+  let url='http://localhost:8080/get-treatment-protocol?symptomName='+this.fruits[0];
+  this.http.get<TreatmentProtocol[]>(url).subscribe(data => {
+   this.treamentProtocol = data;
+}); 
+let medArr:TreatmentProtocol[] = new Array();
+
+if(medArr.length==0){
+  medArr.push(this.treamentProtocol[0]);
+}
+
+  for(let i=0,j=1; i<this.treamentProtocol.length,j<this.treamentProtocol.length-1;i++,j++){
+
+    if(this.treamentProtocol[i].medicineName==this.treamentProtocol[j].medicineName){
+      continue;
+    }
+    else{
+      medArr.push(this.treamentProtocol[i]);
+    }
+
+}
+
+this.treamentProtocol=new Array();
+this.treamentProtocol=medArr;
+console.log(medArr);
+// console.log(this.treamentProtocol.filter((obj, pos, arr) => {
+//   return arr.map(mapObj => mapObj["value"]).indexOf(obj["value"]) === pos;
+// }));
+return this.treamentProtocol;
 }
 
 }
