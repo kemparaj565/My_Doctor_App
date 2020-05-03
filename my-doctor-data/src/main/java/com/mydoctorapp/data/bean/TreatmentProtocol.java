@@ -22,7 +22,7 @@ public class TreatmentProtocol{
 //	@Id
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
 //	@Column(name="Protocol_ID")
-//	@JsonIgnore
+	//@JsonIgnore
 	private Integer protocolId;
 	
 	private String diseaseName;
