@@ -25,8 +25,7 @@
               </mat-grid-tile>
               <mat-grid-tile  [colspan]="tiles[0].cols" [rowspan]="tiles[0].rows" [style.background]="tiles[0].color" class="example-tile-style">
               <label id="user-gender-label">Gender: &nbsp;&nbsp;&nbsp;</label>
-              <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
-                      [(ngModel)]="gender">
+              <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" formControlName="patientGender">
                     <mat-radio-button class="example-radio-button" *ngFor="let gen of gender" [value]="gen">
                   {{gen}}
                     </mat-radio-button>
