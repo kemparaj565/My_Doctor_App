@@ -49,7 +49,10 @@
                 <label id="user-address-label"><mat-icon>opacity</mat-icon>&nbsp;&nbsp;&nbsp;</label><br/>
                 <mat-form-field class="example-full-width">
                 <mat-label>Bloodgroup</mat-label>
-                <input matInput placeholder="Ex. O+" formControlName="patientBloodGroup">
+                <mat-select formControlName="patientBloodGroup"> 
+                  <mat-option>None</mat-option>
+                  <mat-option *ngFor="let blood of bloodGroup" [value]="blood" >{{blood}}</mat-option>
+                </mat-select>
               </mat-form-field>
               </mat-grid-tile>
               <mat-grid-tile  [colspan]="tiles[3].cols" [rowspan]="tiles[0].rows" [style.background]="tiles[0].color" class="example-tile-style">

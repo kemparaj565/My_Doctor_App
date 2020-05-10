@@ -152,6 +152,8 @@ export class MyDoctorBodyComponent implements OnInit {
   symptomsList: string[] = new Array();
   treamentProtocol : TreatmentProtocol[] = new Array();
 
+  bloodGroup: string[] =['A+','A-','B+','B-','AB+','AB-','O+','O-'];
+
   @ViewChild('diseaseInput') diseaseInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
  
